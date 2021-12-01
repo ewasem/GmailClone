@@ -3,6 +3,7 @@ package br.com.ewapps.gmailclone
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import br.com.ewapps.gmailclone.components.GmailDrawerMenu
 import br.com.ewapps.gmailclone.components.HomeAppBar
 import br.com.ewapps.gmailclone.components.HomeBottomMenu
+import br.com.ewapps.gmailclone.components.MailList
 import br.com.ewapps.gmailclone.ui.theme.GmailCloneTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,17 +37,19 @@ fun GmailApp() {
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState, coroutineScope) },
-    drawerContent = {
-        GmailDrawerMenu(scrollState)
-    },
+        drawerContent = {
+            GmailDrawerMenu(scrollState)
+        },
         bottomBar = {
-HomeBottomMenu()
+            HomeBottomMenu()
         }
     ) {
-
+        MailList(it)
+        LazyColumn {
+        }
     }
-
 }
+
 
 @Preview(showBackground = true)
 @Composable
