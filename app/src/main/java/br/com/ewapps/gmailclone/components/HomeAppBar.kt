@@ -5,9 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
@@ -20,10 +18,12 @@ import androidx.compose.ui.unit.dp
 import br.com.ewapps.gmailclone.GmailApp
 import br.com.ewapps.gmailclone.ui.theme.GmailCloneTheme
 import br.com.ewapps.gmailclone.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 //Cria o layout da barra superior do gmail
 @Composable
-fun HomeAppBar(){
+fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope){
     Box(modifier = Modifier.padding(10.dp)) {
         Card(
             modifier = Modifier.requiredHeight(50.dp),
@@ -32,10 +32,19 @@ fun HomeAppBar(){
             modifier = Modifier
                 .fillMaxSize()
                 .padding(8.dp)) {
-                Icon(Icons.Default.Menu, "Menu")
+                IconButton(onClick = {
+                    scope.launch{
+                        scaffoldState.drawerState.open()
+                    }
+                }) {
+                    Icon(Icons.Default.Menu, "Menu", Modifier.padding(end = 10.dp))
+                }
+
                 Text(text = "Procurar e-mail", modifier = Modifier.weight(2.0f))
                 Image(painter = painterResource(id = R.drawable.img), contentDescription = "Perfil",
-                modifier = Modifier.size(30.dp).clip(CircleShape))
+                modifier = Modifier
+                    .size(30.dp)
+                    .clip(CircleShape))
             }
         }
     }
