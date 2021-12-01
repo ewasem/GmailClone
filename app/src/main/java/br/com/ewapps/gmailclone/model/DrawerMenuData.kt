@@ -1,6 +1,5 @@
-package br.com.ewapps.gmailclone
+package br.com.ewapps.gmailclone.model
 
-import android.graphics.drawable.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.ui.graphics.vector.ImageVector
