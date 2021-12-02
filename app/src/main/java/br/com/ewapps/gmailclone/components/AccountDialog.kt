@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
@@ -30,20 +31,20 @@ import br.com.ewapps.gmailclone.R
 //Cria a tela de informação da conta ao clicar na imagem do usuário.
 fun AccountDialog(openDialog: MutableState<Boolean>) {
     Dialog(onDismissRequest = { openDialog.value = false}) {
-        AccountDiologUI()
+        AccountDiologUI(openDialog = openDialog)
     }
 }
 
 //Layout do Dialog
 @Composable
-fun AccountDiologUI(modifier: Modifier = Modifier){
+fun AccountDiologUI(modifier: Modifier = Modifier, openDialog: MutableState<Boolean>){
     Card() {
         Column(
             modifier
                 .background(Color.White)
                 .padding(bottom = 16.dp)) {
             Row(modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { openDialog.value = false }) {
                     Icon(imageVector = Icons.Default.Close, contentDescription = "Fechar")}
                     Image(painterResource(id = R.drawable.google), contentDescription = "Google",
                         modifier
@@ -95,5 +96,5 @@ fun AccountDiologUI(modifier: Modifier = Modifier){
 @Preview
 @Composable
 fun AccountDialogUIPreview(){
-    AccountDiologUI()
+    AccountDiologUI(openDialog = mutableStateOf(false))
 }
