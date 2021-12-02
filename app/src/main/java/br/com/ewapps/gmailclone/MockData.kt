@@ -2,6 +2,7 @@ package br.com.ewapps.gmailclone
 
 import br.com.ewapps.gmailclone.model.MailData
 
+//Dados da lista de emails falsos
 val mailList = listOf(
     MailData(
         1,
@@ -44,6 +45,27 @@ val mailList = listOf(
         "Apostas feitas",
         "Suas apostas estão confirmadas..",
         "14:30"
+    ),
+    MailData(
+        7,
+        "Mariana",
+        "URGENTE!!!",
+        "Temos um problema muito sério no site, entre em contato logo!",
+        "09:13"
+    ),
+    MailData(
+        8,
+        "Marcos",
+        "Vamos marcar aquele almoço",
+        "Podemos marcar o almoço na semana que vem, não temos nada marcado.",
+        "12:43"
+    ),
+    MailData(
+        9,
+        "Josiane Pinheiro",
+        "Horário marcado",
+        "Sua consulta está confirmada pra o dia 11/12/22.",
+        "08:22"
     )
 
 

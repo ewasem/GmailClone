@@ -1,5 +1,8 @@
 package br.com.ewapps.gmailclone.components
 
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -23,11 +26,13 @@ import br.com.ewapps.gmailclone.mailList
 import br.com.ewapps.gmailclone.model.MailData
 
 @Composable
-fun MailList(paddingValues: PaddingValues) {
+//Layout da lista de emails, que contém vários MailItem
+fun MailList(paddingValues: PaddingValues, scrollState: ScrollState) {
     Box(modifier = Modifier.padding(paddingValues = paddingValues)) {
         LazyColumn(modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)) {
+            .padding(16.dp)
+            .scrollable(scrollState, Orientation.Vertical)) {
             items(mailList){
                 mailData ->
                 MailItem(mailData = mailData)
@@ -37,6 +42,7 @@ fun MailList(paddingValues: PaddingValues) {
 }
 
 @Composable
+//Layout de cada email
 fun MailItem(mailData: MailData, modifier: Modifier = Modifier) {
     Row(
         modifier = Modifier
